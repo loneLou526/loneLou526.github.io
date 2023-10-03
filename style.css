@@ -19,14 +19,14 @@ p.hint {
         font-size: 24px
     }
 }
-/* Max-width 1200px and Min-width 320px */
+
 @media (max-width: 1200px) and (min-width: 321px) {
     p {
-        /* 30px - 24px */
+        
         font-size: calc(1.5rem + 6 * (100vw - 320px) / 880);
     }
 }
-/* Min-width 1200px */
+
 @media (min-width: 1201px) {    
     p {
         font-size: 30px;
