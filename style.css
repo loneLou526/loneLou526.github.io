@@ -11,6 +11,7 @@ p.hint {
     color: var(--tg-theme-hint-color);
     margin: auto;
     padding: auto;
+    width: auto;
 }
 
 link {
