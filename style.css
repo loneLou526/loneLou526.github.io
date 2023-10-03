@@ -9,30 +9,9 @@ body {
 
 p.hint {
     color: var(--tg-theme-hint-color);
-    margin: auto;
-    padding: auto;
-    width: auto;
 }
 
-/* @media (max-width: 320px) {
-    p {
-        font-size: 24px
-    }
-}
 
-@media (max-width: 1200px) and (min-width: 321px) {
-    p {
-        
-        font-size: calc(1.5rem + 6 * (100vw - 320px) / 880);
-    }
-}
-
-@media (min-width: 1201px) {    
-    p {
-        font-size: 30px;
-    }
-}
- */
 link {
     color: var(--tg-theme-link-color);
 }
