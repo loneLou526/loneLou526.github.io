@@ -7,16 +7,16 @@ body {
     font-size: 18px;   
 }
 
-p.hint {
+.hint {
     color: var(--tg-theme-hint-color);
 }
 
 
-link {
+.link {
     color: var(--tg-theme-link-color);
 }
 
-button {
+.button {
     color: #fff;
     border-radius: 10px;
     padding: auto;
@@ -26,6 +26,6 @@ button {
     border: 1px solid rgb( 33, 126, 74 );
 }
 
-button:hover {
+.button:hover {
     background-color: rgb( 75, 183, 141 );
 }
