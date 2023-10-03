@@ -14,3 +14,17 @@ hint {
 link {
     color: var(--tg-theme-link-color);
 }
+
+button {
+    color: #fff;
+    border-radius: 10px;
+    padding: auto;
+    width: 100px;
+    margin: 5px;
+    background-color: rgb( 43, 153, 91 );
+    border: 1px solid rgb( 33, 126, 74 );
+}
+
+button:hover {
+    background-color: rgb( 75, 183, 141 );
+}
