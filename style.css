@@ -1,6 +1,6 @@
 body {
-/*     color: var(--tg-theme-text-color);
-    background: var(--tg-theme-bg-color); */
+    color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,5 +12,5 @@ hint {
 }
 
 link {
-    color:aliceblue;
+    color: var(--tg-theme-link-color);
 }
