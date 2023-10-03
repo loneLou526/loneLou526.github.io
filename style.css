@@ -7,8 +7,10 @@ body {
     font-size: 18px;   
 }
 
-hint {
+p.hint {
     color: var(--tg-theme-hint-color);
+    margin: auto;
+    padding: auto;
 }
 
 link {
