@@ -1,0 +1,452 @@
+body {
+    font-family: 'Comfortaa', cursive;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #ffcccb 0%, #ffeaea 99%, #ffeaea 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    margin: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 3em;
+    color: #ff4b7d;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-size: 1.2em;
+    color: #444;
+    line-height: 1.6;
+}
+
+.balloon {
+    width: 100px;
+    height: 120px;
+    background: #ff69b4;
+    border-radius: 50%;
+    position: fixed;
+    animation: float 6s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+.balloon::before {
+    content: "";
+    width: 10px;
+    height: 30px;
+    background: #ff69b4;
+    position: absolute;
+    bottom: -15px;
+    left: 45px;
+}
+
+.balloon:nth-child(1) {
+    left: 10%;
+    top: 20%;
+    animation-delay: -2s;
+    background: #87CEFA;
+}
+
+.balloon:nth-child(2) {
+    right: 10%;
+    top: 30%;
+    animation-delay: -1s;
+    background: #98FB98;
+}
+
+.balloon:nth-child(3) {
+    left: 20%;
+    top: 60%;
+    animation-delay: -3s;
+    background: #DDA0DD;
+}
+
+.balloon:nth-child(4) {
+    right: 20%;
+    top: 70%;
+    animation-delay: -5s;
+    background: #F0E68C;
+}
+
+.balloon:nth-child(5) {
+    left: 50%;
+    top: 10%;
+    animation-delay: -7s;
+    background: #ff69b4;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #f2d74e;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.cake-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    position: relative;
+}
+
+.cake {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cake:hover {
+    transform: scale(1.05);
+}
+
+.cake-base {
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to right, #f08080, #ff69b4);
+    border-radius: 10px 10px 50% 50%;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cake-middle {
+    width: 90%;
+    height: 60%;
+    background: linear-gradient(to right, #ffa07a, #ff8c00);
+    border-radius: 10px 10px 45% 45%;
+    position: absolute;
+    bottom: 25%;
+    left: 5%;
+}
+
+.cake-top {
+    width: 80%;
+    height: 50%;
+    background: linear-gradient(to right, #ffff00, #ffd700);
+    border-radius: 10px 10px 40% 40%;
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+}
+
+.candle {
+    width: 10px;
+    height: 50px;
+    background: linear-gradient(to right, #FFF, #F0F0F0);
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
+    z-index: 3;
+}
+
+.flame {
+    width: 15px;
+    height: 25px;
+    background: radial-gradient(ellipse at bottom, #FFD700, #FF6347);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 20% 20%;
+    filter: blur(1px);
+    z-index: 4;
+    transition: all 0.3s ease;
+}
+
+.flame.active {
+    animation: flicker 0.5s ease-in-out infinite alternate;
+}
+
+.flame.extinguished {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.1);
+}
+
+@keyframes flicker {
+    0% {
+        transform: translateX(-50%) scale(1) rotate(-2deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1.1) rotate(2deg);
+        opacity: 1;
+    }
+}
+
+.number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: #FF1493;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+.champagne {
+    width: 80px;
+    height: 240px;
+    position: relative;
+}
+
+.bottle {
+    width: 100%;
+    height: 85%;
+    background: linear-gradient(to right, #708090, #778899, #708090);
+    border-radius: 10% 10% 20% 20% / 5% 5% 50% 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.bottle::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 50%);
+    border-radius: inherit;
+}
+
+.bottle-neck {
+    width: 40%;
+    height: 25%;
+    background: linear-gradient(to right, #708090, #778899, #708090);
+    position: absolute;
+    top: -15%;
+    left: 30%;
+    border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+}
+
+.bottle-top {
+    width: 30px;
+    height: 20px;
+    background: #B8860B;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
+}
+
+.cork {
+    width: 20px;
+    height: 15px;
+    background: #8B4513;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
+}
+
+.label {
+    width: 70%;
+    height: 80px;
+    background: #FFD700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: #8B4513;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: hidden;
+}
+
+.surprise-btn {
+    background-color: #ff4b7d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.surprise-btn:hover {
+    background-color: #ff69b4;
+    transform: scale(1.05);
+}
+
+.surprise-balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.surprise-balloon::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 20px;
+    background: inherit;
+    bottom: -10px;
+    left: 27px;
+    transform: rotate(45deg);
+}
+
+.surprise-balloon:hover {
+    transform: scale(1.1);
+}
+
+.balloon-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    z-index: 1000;
+}
+
+.result-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    text-align: center;
+    z-index: 1001;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .cake-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cake {
+        width: 150px;
+        height: 150px;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .champagne {
+        width: 60px;
+        height: 180px;
+    }
+
+    .number {
+        font-size: 28px;
+    }
+
+    .balloon {
+        width: 60px;
+        height: 72px;
+    }
+
+    .balloon::before {
+        width: 6px;
+        height: 18px;
+        bottom: -9px;
+        left: 27px;
+    }
+
+    .surprise-btn {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .surprise-balloon {
+        width: 40px;
+        height: 60px;
+    }
+
+    .surprise-balloon::before {
+        width: 4px;
+        height: 15px;
+        bottom: -8px;
+        left: 18px;
+    }
+
+    .balloon-counter {
+        font-size: 14px;
+        top: 10px;
+        right: 10px;
+        padding: 5px;
+    }
+
+    .result-message {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
