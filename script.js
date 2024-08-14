@@ -423,3 +423,18 @@ if (isMobile()) {
     }
   });
 }
+
+// связь с ботом
+function notifyBot() {
+    const botToken = '7541209056:AAHQd9Qv_ljTbP7zfIumTdKhycC1zCfFpDI'; // Ваш токен бота
+    const chatId = '864496207'; // Ваш chat_id
+    const message = 'Кто-то открыл веб-приложение!';
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+        .then(response => response.json())
+        .then(data => console.log('Сообщение отправлено:', data))
+        .catch(error => console.error('Ошибка отправки сообщения:', error));
+}
+
+// Вызов функции уведомления при открытии приложения
+notifyBot();
