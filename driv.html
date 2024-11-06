@@ -1,0 +1,809 @@
+<html><head><base href="https://websim-birthday-lera.com/"><title>С Днем Рождения, Лера!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #0a192f 0%, #112240 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  .matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .matrix-character {
+    position: absolute;
+    color: rgba(100, 255, 218, 0.3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+  .container {
+    text-align: center;
+    padding: 20px;
+    background: rgba(16, 33, 65, 0.95);
+    border: 1px solid #64ffda;
+    box-shadow: 0 0 20px rgba(100, 253, 218, 0.1);
+    max-width: 90%;
+    margin: 20px;
+    position: relative;
+    z-index: 10;
+  }
+  h1 {
+    font-size: 3em;
+    color: #64ffda;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(100, 253, 218, 0.5);
+  }
+  p {
+    font-size: 1.2em;
+    color: #8892b0;
+    line-height: 1.6;
+  }
+  .balloon {
+    width: 100px;
+    height: 120px;
+    background: #64ffda;
+    border-radius: 50%;
+    position: fixed;
+    animation: float 6s ease-in-out infinite;
+    transform-origin: bottom center;
+    opacity: 0.9;
+  }
+  .balloon::before {
+    content: "";
+    width: 10px;
+    height: 30px;
+    background: #64ffda;
+    position: absolute;
+    bottom: -15px;
+    left: 45px;
+  }
+  .balloon:nth-child(1) { left: 10%; top: 20%; animation-delay: -2s; background: #00ffff; }
+  .balloon:nth-child(2) { right: 10%; top: 30%; animation-delay: -1s; background: #64ffda; }
+  .balloon:nth-child(3) { left: 20%; top: 60%; animation-delay: -3s; background: #4deeea; }
+  .balloon:nth-child(4) { right: 20%; top: 70%; animation-delay: -5s; background: #74ee15; }
+  .balloon:nth-child(5) { left: 50%; top: 10%; animation-delay: -7s; background: #0dccff; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+  
+  .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #64ffda;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  .cake-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    position: relative;
+  }
+  
+  .cake {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .cake:hover {
+    transform: scale(1.05);
+  }
+  
+  .greenhouse-base {
+    width: 100%;
+    height: 60%;
+    background: rgba(100, 255, 218, 0.3);
+    border: 2px solid #64ffda;
+    position: absolute;
+    bottom: 0;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+  }
+
+  .greenhouse-roof {
+    width: 120%;
+    height: 50%;
+    background: rgba(100, 255, 218, 0.2);
+    border: 2px solid #64ffda;
+    position: absolute;
+    bottom: 50%;
+    left: -10%;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    backdrop-filter: blur(5px);
+  }
+
+  .greenhouse-door {
+    width: 30%;
+    height: 40%;
+    border: 2px solid #64ffda;
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+    background: rgba(100, 255, 218, 0.1);
+  }
+
+  .status-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #64ffda;
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    z-index: 5;
+  }
+
+  .greenhouse-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: -30px;
+    color: #64ffda;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    z-index: 5;
+  }
+  
+  .champagne {
+    width: 80px;
+    height: 240px;
+    position: relative;
+  }
+  
+  .bottle {
+    width: 100%;
+    height: 85%;
+    background: linear-gradient(to right, #1a1a1a, #333333);
+    border-radius: 10% 10% 20% 20% / 5% 5% 50% 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bottle::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%);
+    border-radius: inherit;
+  }
+  
+  .bottle-neck {
+    width: 40%;
+    height: 25%;
+    background: linear-gradient(to right, #1a1a1a, #333333);
+    position: absolute;
+    top: -15%;
+    left: 30%;
+    border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  }
+  
+  .bottle-top {
+    width: 30px;
+    height: 20px;
+    background: #64ffda;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .cork {
+    width: 20px;
+    height: 15px;
+    background: #64ffda;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .label {
+    width: 70%;
+    height: 80px;
+    background: #112240;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: #64ffda;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #64ffda;
+  }
+  
+  .surprise-btn {
+    background-color: #64ffda;
+    color: #0a192f;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .surprise-btn:hover {
+    background-color: #00bfff;
+    transform: scale(1.05);
+  }
+
+  .surprise-balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .surprise-balloon::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 20px;
+    background: inherit;
+    bottom: -10px;
+    left: 27px;
+    transform: rotate(45deg);
+  }
+
+  .surprise-balloon:hover {
+    transform: scale(1.1);
+  }
+
+  .balloon-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(16, 33, 65, 0.9);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #64ffda;
+    border: 1px solid #64ffda;
+    z-index: 1000;
+  }
+
+  .result-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(16, 33, 65, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    text-align: center;
+    color: #64ffda;
+    border: 1px solid #64ffda;
+    z-index: 1001;
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+    
+    .container {
+      padding: 15px;
+      margin: 10px;
+    }
+    
+    h1 {
+      font-size: 2em;
+    }
+    
+    p {
+      font-size: 1em;
+    }
+    
+    .cake-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .cake {
+      width: 150px;
+      height: 150px;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+    
+    .champagne {
+      width: 60px;
+      height: 180px;
+    }
+    
+    .status-text {
+      font-size: 14px;
+    }
+    
+    .greenhouse-title {
+      font-size: 16px;
+      top: -25px;
+    }
+    
+    .balloon {
+      width: 60px;
+      height: 72px;
+    }
+    
+    .balloon::before {
+      width: 6px;
+      height: 18px;
+      bottom: -9px;
+      left: 27px;
+    }
+    
+    .surprise-btn {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+    
+    .surprise-balloon {
+      width: 40px;
+      height: 60px;
+    }
+    
+    .surprise-balloon::before {
+      width: 4px;
+      height: 15px;
+      bottom: -8px;
+      left: 18px;
+    }
+    
+    .balloon-counter {
+      font-size: 14px;
+      top: 10px;
+      right: 10px;
+      padding: 5px;
+    }
+    
+    .result-message {
+      font-size: 18px;
+      padding: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="matrix-bg"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+
+<div class="container">
+  <h1>С Днем Рождения, Лера!</h1>
+  <div class="cake-container">
+    <div class="cake" id="cake">
+      <div class="greenhouse-title">ТЕПЛИЦА</div>
+      <div class="greenhouse-base"></div>
+      <div class="greenhouse-roof"></div>
+      <div class="greenhouse-door"></div>
+      <div class="status-text">Почти доделана</div>
+    </div>
+    <div class="champagne">
+      <div class="bottle">
+        <div class="bottle-neck"></div>
+        <div class="bottle-top"></div>
+        <div class="cork"></div>
+        <div class="label">Шампанское</div>
+      </div>
+    </div>
+  </div>
+  <p>Дорогая Лера! В этот особенный день, когда тебе исполняется 18 лет, хочу пожелать тебе море улыбок, океан любви и бесконечного счастья! Пусть каждый день твоей жизни будет наполнен радостью, успехами и незабываемыми моментами. Ты удивительный человек, и я счастлива, что ты есть в моей жизни. С днем рождения, моя любимая подруга!</p>
+  <button class="surprise-btn" id="surpriseBtn">СЮРПРИЗ</button>
+</div>
+
+<div class="balloon-counter" id="balloonCounter">Лопнуто шаров: 0</div>
+<div class="result-message" id="resultMessage"></div>
+
+<script>
+const matrixBg = document.createElement('div');
+matrixBg.classList.add('matrix-bg');
+document.body.insertBefore(matrixBg, document.body.firstChild);
+
+function createMatrixEffect() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>[]{}/*-+=#$';
+  const character = document.createElement('div');
+  character.classList.add('matrix-character');
+  character.style.left = Math.random() * 100 + 'vw';
+  character.style.animationDuration = Math.random() * 2 + 1 + 's';
+  character.innerText = characters[Math.floor(Math.random() * characters.length)];
+  matrixBg.appendChild(character);
+
+  const animation = character.animate([
+    { transform: 'translateY(-20px)', opacity: 0 },
+    { transform: 'translateY(100vh)', opacity: 0.5 }
+  ], {
+    duration: Math.random() * 2000 + 3000,
+    easing: 'linear'
+  });
+
+  animation.onfinish = () => {
+    character.remove();
+  };
+}
+
+setInterval(createMatrixEffect, 100);
+
+function createConfetti() {
+  const confetti = document.createElement('div');
+  confetti.classList.add('confetti');
+  confetti.style.left = Math.random() * 100 + 'vw';
+  confetti.style.top = -10 + 'px';
+  confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+  confetti.style.opacity = Math.random();
+  confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+  
+  const colors = ['#64ffda', '#00bfff', '#0073e6', '#112240', '#003366'];
+  confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+  
+  document.body.appendChild(confetti);
+  
+  confetti.animate([
+    { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+    { transform: `translateY(${window.innerHeight}px) rotate(720deg)`, opacity: 0 }
+  ], {
+    duration: Math.random() * 3000 + 2000,
+    easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+  }).onfinish = () => confetti.remove();
+}
+
+setInterval(createConfetti, 300);
+
+document.querySelectorAll('.balloon').forEach(balloon => {
+  balloon.addEventListener('click', () => {
+    balloon.style.transform = 'scale(1.2)';
+    setTimeout(() => {
+      balloon.style.transform = '';
+    }, 300);
+  });
+});
+
+const greenhouse = document.getElementById('cake');
+
+greenhouse.addEventListener('mouseover', () => {
+  if (!greenhouse.classList.contains('clicked')) {
+    greenhouse.style.transform = 'scale(1.05) rotate(2deg)';
+  }
+});
+
+greenhouse.addEventListener('mouseout', () => {
+  if (!greenhouse.classList.contains('clicked')) {
+    greenhouse.style.transform = '';
+  }
+});
+
+greenhouse.addEventListener('click', () => {
+  greenhouse.classList.add('clicked');
+  greenhouse.style.transform = 'scale(1.1)';
+  setTimeout(() => {
+    greenhouse.style.transform = '';
+    greenhouse.classList.remove('clicked');
+  }, 300);
+
+  const explosion = document.createElement('div');
+  explosion.style.position = 'absolute';
+  explosion.style.width = '100%';
+  explosion.style.height = '100%';
+  explosion.style.top = '0';
+  explosion.style.left = '0';
+  explosion.style.background = 'radial-gradient(circle, rgba(100,255,218,0.8) 0%, rgba(100,255,218,0) 70%)';
+  explosion.style.borderRadius = '50%';
+  explosion.style.opacity = '0';
+  explosion.style.transition = 'all 0.5s ease-out';
+  greenhouse.appendChild(explosion);
+
+  setTimeout(() => {
+    explosion.style.transform = 'scale(1.5)';
+    explosion.style.opacity = '1';
+  }, 10);
+
+  setTimeout(() => {
+    explosion.remove();
+  }, 500);
+
+  for (let i = 0; i < 30; i++) {
+    setTimeout(createConfetti, i * 50);
+  }
+});
+
+function createStar() {
+  const star = document.createElement('div');
+  star.innerHTML = '⭐';
+  star.style.position = 'fixed';
+  star.style.top = '-10px';
+  star.style.left = Math.random() * 100 + 'vw';
+  star.style.fontSize = Math.random() * 20 + 10 + 'px';
+  star.style.color = 'gold';
+  star.style.opacity = '0';
+  star.style.zIndex = '5';
+  star.style.pointerEvents = 'none';
+  
+  document.body.appendChild(star);
+  
+  star.animate([
+    { transform: 'translateY(0)', opacity: 1 },
+    { transform: `translateY(${window.innerHeight + 20}px)`, opacity: 0 }
+  ], {
+    duration: 2000,
+    easing: 'linear',
+  }).onfinish = () => star.remove();
+}
+
+setInterval(createStar, 2000);
+
+const champagne = document.querySelector('.champagne');
+
+greenhouse.addEventListener('mouseover', () => {
+  if (!greenhouse.classList.contains('clicked')) {
+    greenhouse.style.transform = 'scale(1.05) rotate(2deg)';
+  }
+});
+greenhouse.addEventListener('mouseout', () => {
+  if (!greenhouse.classList.contains('clicked')) {
+    greenhouse.style.transform = '';
+  }
+});
+
+champagne.addEventListener('mouseover', () => {
+  champagne.style.transform = 'scale(1.05) rotate(-2deg)';
+});
+champagne.addEventListener('mouseout', () => {
+  champagne.style.transform = '';
+});
+
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.balloon').forEach((balloon, index) => {
+    const positions = [
+      { left: '10%', top: '20%' },
+      { right: '10%', top: '30%' },
+      { left: '20%', top: '60%' },
+      { right: '20%', top: '70%' },
+      { left: '50%', top: '10%' }
+    ];
+    Object.assign(balloon.style, positions[index]);
+  });
+});
+
+champagne.addEventListener('click', () => {
+  const pop = document.createElement('div');
+  pop.style.position = 'absolute';
+  pop.style.top = '-40px';
+  pop.style.left = '50%';
+  pop.style.transform = 'translateX(-50%)';
+  pop.style.fontSize = '24px';
+  pop.textContent = '🍾';
+  champagne.appendChild(pop);
+
+  pop.animate([
+    { transform: 'translateX(-50%) translateY(0) scale(1)', opacity: 1 },
+    { transform: 'translateX(-50%) translateY(-50px) scale(2)', opacity: 0 }
+  ], {
+    duration: 1000,
+    easing: 'ease-out'
+  }).onfinish = () => pop.remove();
+
+  for (let i = 0; i < 20; i++) {
+    setTimeout(() => {
+      const bubble = document.createElement('div');
+      bubble.style.position = 'absolute';
+      bubble.style.width = '8px';
+      bubble.style.height = '8px';
+      bubble.style.borderRadius = '50%';
+      bubble.style.background = 'rgba(255, 255, 255, 0.7)';
+      bubble.style.top = '0';
+      bubble.style.left = `${Math.random() * 100}%`;
+      champagne.appendChild(bubble);
+
+      bubble.animate([
+        { transform: 'translateY(0) scale(1)', opacity: 1 },
+        { transform: `translateY(-${100 + Math.random() * 100}px) scale(0)`, opacity: 0 }
+      ], {
+        duration: 1000 + Math.random() * 1000,
+        easing: 'ease-out'
+      }).onfinish = () => bubble.remove();
+    }, i * 50);
+  }
+});
+
+const number = document.querySelector('.status-text');
+function animateNumber() {
+  number.style.transform = `translate(-50%, -50%) scale(${1 + Math.random() * 0.1})`;
+  number.style.textShadow = `${Math.random() * 2 - 1}px ${Math.random() * 2 - 1}px 3px rgba(100,253,218,0.7)`;
+  
+  requestAnimationFrame(animateNumber);
+}
+animateNumber();
+
+const surpriseBtn = document.getElementById('surpriseBtn');
+const balloonCounter = document.getElementById('balloonCounter');
+const resultMessage = document.getElementById('resultMessage');
+let poppedBalloons = 0;
+let totalBalloons = 0;
+
+const surpriseBalloonColors = ['#00ffff', '#64ffda', '#4deeea', '#74ee15', '#0dccff'];
+
+function createSurpriseBalloon() {
+  const balloon = document.createElement('div');
+  balloon.classList.add('surprise-balloon');
+  balloon.style.left = Math.random() * (window.innerWidth - 60) + 'px';
+  balloon.style.top = '-80px';
+  
+  const randomColor = surpriseBalloonColors[Math.floor(Math.random() * surpriseBalloonColors.length)];
+  balloon.style.background = randomColor;
+  
+  document.body.appendChild(balloon);
+  totalBalloons++;
+
+  const animation = balloon.animate([
+    { transform: 'translateY(0)' },
+    { transform: `translateY(${window.innerHeight + 80}px)` }
+  ], {
+    duration: 5000 + Math.random() * 2000,
+    easing: 'linear'
+  });
+
+  animation.onfinish = () => {
+    balloon.remove();
+    checkGameEnd();
+  };
+
+  balloon.addEventListener('click', () => {
+    poppedBalloons++;
+    balloon.remove();
+    updateCounter();
+    createConfetti();
+    checkGameEnd();
+  });
+}
+
+function updateCounter() {
+  balloonCounter.textContent = `Лопнуто шаров: ${poppedBalloons}`;
+}
+
+function checkGameEnd() {
+  if (document.querySelectorAll('.surprise-balloon').length === 0) {
+    resultMessage.textContent = `Игра окончена! Вы лопнули ${poppedBalloons} из ${totalBalloons} шаров.`;
+    resultMessage.style.display = 'block';
+    setTimeout(() => {
+      resultMessage.style.display = 'none';
+      poppedBalloons = 0;
+      totalBalloons = 0;
+      updateCounter();
+    }, 5000);
+  }
+}
+
+surpriseBtn.addEventListener('click', () => {
+  for (let i = 0; i < 20; i++) {
+    setTimeout(createSurpriseBalloon, i * 200);
+  }
+});
+
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.surprise-balloon').forEach(balloon => {
+    balloon.style.left = Math.random() * (window.innerWidth - 60) + 'px';
+  });
+});
+
+document.body.addEventListener('touchstart', function(e) {
+  if (e.target.classList.contains('surprise-balloon')) {
+    e.preventDefault(); 
+    e.target.click(); 
+  }
+}, {passive: false});
+
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+if (isMobile()) {
+  const cakeContainer = document.querySelector('.cake-container');
+  const greenhouse = document.querySelector('.cake');
+  const champagne = document.querySelector('.champagne');
+
+  cakeContainer.style.flexDirection = 'column';
+  greenhouse.style.marginRight = '0';
+  greenhouse.style.marginBottom = '20px';
+
+  greenhouse.style.transform = 'scale(1.2)';
+  champagne.style.transform = 'scale(1.2)';
+
+  document.body.style.fontSize = '14px';
+
+  setInterval(createConfetti, 500);
+
+  function createSurpriseBalloon() {
+    const balloon = document.createElement('div');
+    balloon.classList.add('surprise-balloon');
+    balloon.style.width = '40px';
+    balloon.style.height = '60px';
+    balloon.style.left = Math.random() * (window.innerWidth - 40) + 'px';
+    balloon.style.top = '-60px';
+    
+    const randomColor = surpriseBalloonColors[Math.floor(Math.random() * surpriseBalloonColors.length)];
+    balloon.style.background = randomColor;
+    
+    document.body.appendChild(balloon);
+    totalBalloons++;
+
+    const animation = balloon.animate([
+      { transform: 'translateY(0)' },
+      { transform: `translateY(${window.innerHeight + 60}px)` }
+    ], {
+      duration: 4000 + Math.random() * 1000,
+      easing: 'linear'
+    });
+
+    animation.onfinish = () => {
+      balloon.remove();
+      checkGameEnd();
+    };
+
+    balloon.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      poppedBalloons++;
+      balloon.remove();
+      updateCounter();
+      createConfetti();
+      checkGameEnd();
+    }, {passive: false});
+  }
+
+  surpriseBtn.addEventListener('click', () => {
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createSurpriseBalloon, i * 300);
+    }
+  });
+}
+</script>
+</body>
+</html>
